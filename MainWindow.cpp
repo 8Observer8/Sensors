@@ -95,6 +95,7 @@ void MainWindow::sendToServer(const QList<Sensor> &sensorList)
 void MainWindow::on_AddAction_triggered()
 {
     AddDialog *dialog = new AddDialog(this);
+    dialog->setModal(true);
     connect(dialog, SIGNAL(signalNameAndNumber(QString, int)), this, SLOT(slotAddSensor(QString, int)));
     dialog->show();
 }
@@ -102,6 +103,7 @@ void MainWindow::on_AddAction_triggered()
 void MainWindow::on_EditAction_triggered()
 {
     EditDialog *dialog = new EditDialog(this);
+    dialog->setModal(true);
     connect(dialog, SIGNAL(signalNameAndNumber(QString, int)), this, SLOT(slotAddSensor(QString, int)));
     dialog->show();
 }
@@ -129,6 +131,7 @@ void MainWindow::slotAddSensor(QString sensorName, int portNumber)
 void MainWindow::on_ConnectAction_triggered()
 {
     SettingDialog *dialog = new SettingDialog(this);
+    dialog->setModal(true);
     connect(dialog, SIGNAL(signalHostNameAndPortNumber(QString,int)), this, SLOT(setSettinsOfConnection(QString,int)));
     dialog->show();
 }
@@ -189,4 +192,9 @@ void MainWindow::displayError(QAbstractSocket::SocketError socketError)
                                  tr("The following error occurred: %1.")
                                  .arg(mTcpSocket->errorString()));
     }
+}
+
+void MainWindow::on_ExitAction_triggered()
+{
+    close();
 }

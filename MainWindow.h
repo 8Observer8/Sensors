@@ -44,6 +44,8 @@ private slots:
 
     void displayError(QAbstractSocket::SocketError socketError);
 
+    void on_ExitAction_triggered();
+
 private:
     Ui::MainWindow *ui;
     QStandardItemModel *mModel;
